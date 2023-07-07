@@ -8,7 +8,7 @@ from users.models import User
 # from users.serializer import UserSerializer
 
 
-class FollowerView(generics.ListCreateAPIView):
+class FollowerView(generics.ListAPIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
     queryset = Follower.objects.all()
