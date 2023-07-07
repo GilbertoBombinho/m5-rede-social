@@ -17,3 +17,7 @@ class UserFollower(models.Model):
     user = models.ForeignKey(
         "users.User", on_delete=models.CASCADE, related_name="user_name_follower"
     )
+<<<<<<< HEAD
+    is_friend = models.BooleanField(default=False)
+=======
+>>>>>>> 5444ba430684fb4c80985fa497292cdcb4891f86
