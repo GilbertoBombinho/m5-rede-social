@@ -1,4 +1,5 @@
 from django.db import models
+
 from likes.models import Like
 from users.models import User
 
@@ -13,4 +14,5 @@ class Post(models.Model):
     user = models.ForeignKey(
         "users.User", on_delete=models.CASCADE, related_name="users_post"
     )
+
 
