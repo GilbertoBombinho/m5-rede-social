@@ -4,7 +4,6 @@ from followers.models import Follower
 
 
 class User(AbstractUser):
-    user_name = models.CharField(max_length=50, null=True)
     email = models.EmailField(unique=True)
     followers = models.ManyToManyField(
         "followers.Follower", through="users.UserFollower", related_name="user_follower"
@@ -18,4 +17,7 @@ class UserFollower(models.Model):
     user = models.ForeignKey(
         "users.User", on_delete=models.CASCADE, related_name="user_name_follower"
     )
+<<<<<<< HEAD
     is_friend = models.BooleanField(default=False)
+=======
+>>>>>>> 5444ba430684fb4c80985fa497292cdcb4891f86

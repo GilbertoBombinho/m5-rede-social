@@ -1,7 +1,7 @@
 from rest_framework import generics
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.permissions import IsAuthenticated
-from serializer import FollowerSerializer
+from serializer import FollowerSerializer, FolloewerUserSerializer
 from models import Follower
 from users.models import User, UserFollower
 
@@ -25,16 +25,11 @@ class UnfollowerView(generics.DestroyAPIView):
 class FollowUserView(generics.CreateAPIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
-    serializer_class = """""" "UserSerializer" """"""
+    serializer_class = FolloewerUserSerializer
 
     def perform_create(self, serializer):
         follower = self.request.user
         user_to_follow_id = self.request.data.get("user_id")
         user_to_follow = User.objects.get(id=user_to_follow_id)
 
-        UserFollower.objects.create(
-            follower=follower, user=user_to_follow, is_friend=True
-        )
-
-        follower.following.add(user_to_follow)
-        follower.save()
+        serializer.save(follower=follower, user=user_to_follow, is_friend=True)
