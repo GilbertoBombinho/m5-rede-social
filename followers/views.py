@@ -1,9 +1,9 @@
 from rest_framework import generics
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.permissions import IsAuthenticated
-from serializer import FollowerSerializer, FolloewerUserSerializer
-from models import Follower
-from users.models import User, UserFollower
+from .serializer import FollowerSerializer, FolloewerUserSerializer
+from .models import Follower
+from users.models import User
 
 # from users.serializer import UserSerializer
 

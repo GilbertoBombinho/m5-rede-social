@@ -1,8 +1,8 @@
 from django.urls import path
-from views import FollowerView, UnfollowerView, FollowUserView
+from . import views
 
 urlpatterns = [
-    path("follower/", FollowerView.as_view()),
-    path("unfollower/", UnfollowerView.as_view()),
-    path("followeruser/", FollowUserView.as_view()),
+    path("follower/", views.FollowerView.as_view()),
+    path("unfollower/", views.UnfollowerView.as_view()),
+    path("followeruser/", views.FollowUserView.as_view()),
 ]
