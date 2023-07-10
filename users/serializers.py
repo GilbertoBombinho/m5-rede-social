@@ -3,6 +3,7 @@ from rest_framework.validators import UniqueValidator
 from .models import User
 from django.contrib.auth.hashers import make_password
 from posts.serializers import PostSerializer
+from followers.serializer import FollowerSerializer
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -10,9 +11,20 @@ class UserSerializer(serializers.ModelSerializer):
         validators=[UniqueValidator(queryset=User.objects.all())]
     )
     users_post = PostSerializer(many=True, read_only=True)
+    user_name_follower = FollowerSerializer(many=True, read_only=True)
+
     class Meta:
         model = User
-        fields = ["id", "email", "password", "username", "first_name", "last_name", "users_post"]
+        fields = [
+            "id",
+            "email",
+            "password",
+            "username",
+            "first_name",
+            "last_name",
+            "users_post",
+            "user_name_follower",
+        ]
         extra_kwargs = {"password": {"write_only": True}}
 
     def create(self, validated_data: dict) -> User:
