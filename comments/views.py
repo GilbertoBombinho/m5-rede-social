@@ -1,5 +1,3 @@
-from django.shortcuts import render
-
 from rest_framework import generics,permissions
 from rest_framework.generics import ListAPIView
 from users.permission import IsAccountOwner
