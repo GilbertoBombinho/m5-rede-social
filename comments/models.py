@@ -1,5 +1,4 @@
 from django.db import models
-
 from users.models import User
 from posts.models import Post
 
@@ -12,5 +11,3 @@ class Comment(models.Model):
     user = models.ForeignKey(
         "users.User", on_delete=models.CASCADE, related_name="users_comment"
     )
-
-

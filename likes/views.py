@@ -9,9 +9,10 @@ class LikeView(generics.ListCreateAPIView):
     authentication_classes = [JWTAuthentication]
     serializer_class = PostSerializer
     queryset = Like.objects.all()
+
     def perform_create(self, serializer):
         return serializer.save(user=self.request.user)
-    
+
 
 class LikeDestroyView(generics.DestroyAPIView):
     authentication_classes = [JWTAuthentication]

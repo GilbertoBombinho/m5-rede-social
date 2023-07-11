@@ -11,10 +11,15 @@ class PostView(generics.ListCreateAPIView):
     permission_classes = [IsAccountOwner]
     serializer_class = PostSerializer
     queryset = Post.objects.all()
-    
+
     def perform_create(self, serializer):
         return serializer.save(user=self.request.user)
-    
+
+
+class PostListView(generics.ListAPIView):
+    serializer_class = PostSerializer
+    queryset = Post.objects.filter(privacy=False)
+
 
 class PostDetailView(generics.RetrieveUpdateDestroyAPIView):
     authentication_classes = [JWTAuthentication]
@@ -22,4 +27,3 @@ class PostDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     lookup_url_kwarg = "pk"
-

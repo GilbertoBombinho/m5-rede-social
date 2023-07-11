@@ -1,9 +1,9 @@
 from django.shortcuts import get_object_or_404
 from rest_framework import serializers
-from .models import Comment,Post,User
+from .models import Comment, Post, User
+
 
 class CommentSerializer(serializers.ModelSerializer):
-    
     class Meta:
         model = Comment
         fields = [
@@ -13,6 +13,4 @@ class CommentSerializer(serializers.ModelSerializer):
             "user",
         ]
 
-        extra_kwargs = {'user': {'read_only': True}}
-    
-    
+        extra_kwargs = {"user": {"read_only": True}}
