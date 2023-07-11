@@ -11,7 +11,7 @@ class UserSerializer(serializers.ModelSerializer):
         validators=[UniqueValidator(queryset=User.objects.all())]
     )
     users_post = PostSerializer(many=True, read_only=True)
-    user_name_follower = FollowerSerializer(many=True, read_only=True)
+    followers = FollowerSerializer(many=True, read_only=True)
 
     class Meta:
         model = User
@@ -23,7 +23,7 @@ class UserSerializer(serializers.ModelSerializer):
             "first_name",
             "last_name",
             "users_post",
-            "user_name_follower",
+            "followers",
         ]
         extra_kwargs = {"password": {"write_only": True}}
 

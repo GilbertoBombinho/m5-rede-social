@@ -9,6 +9,7 @@ class User(AbstractUser):
         "followers.Follower", through="users.UserFollower", related_name="user_follower"
     )
 
+
 class UserFollower(models.Model):
     follower = models.ForeignKey(
         "followers.Follower", on_delete=models.CASCADE, related_name="followers"
@@ -17,5 +18,3 @@ class UserFollower(models.Model):
         "users.User", on_delete=models.CASCADE, related_name="user_name_follower"
     )
     is_friend = models.BooleanField(default=False)
-
-

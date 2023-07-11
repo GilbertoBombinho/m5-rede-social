@@ -16,3 +16,11 @@ class Post(models.Model):
     )
 
 
+class PostLike(models.Model):
+    like = models.OneToOneField(
+        "likes.Like", on_delete=models.CASCADE, related_name="like_post"
+    )
+    post = models.OneToOneField(
+        "posts.Post", on_delete=models.CASCADE, related_name="post_like"
+    )
+    status = models.BooleanField(default=False)
