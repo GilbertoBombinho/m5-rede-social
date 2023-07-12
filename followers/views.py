@@ -29,7 +29,5 @@ class FollowUserView(generics.CreateAPIView):
         follower = self.request.user
         user_to_follow_id = self.request.data.get("user")
         user_to_follow = User.objects.get(id=user_to_follow_id)
-
         follower_instance = Follower.objects.create(name=user_to_follow.username)
-
         serializer.save(follower=follower_instance, user=user_to_follow, is_friend=True)
