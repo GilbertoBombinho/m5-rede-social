@@ -62,7 +62,6 @@ THIRD_PARTY_APPS = [
 MY_APPS = [
     "comments",
     "followers",
-    "likes",
     "posts",
     "users"
 ]

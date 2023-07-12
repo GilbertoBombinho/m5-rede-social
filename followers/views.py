@@ -3,9 +3,7 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.permissions import IsAuthenticated
 from .serializer import FollowerSerializer, FolloewerUserSerializer
 from .models import Follower
-from users.models import User
-
-# from users.serializer import UserSerializer
+from users.models import User, UserFollower
 
 
 class FollowerView(generics.ListAPIView):
@@ -29,7 +27,7 @@ class FollowUserView(generics.CreateAPIView):
 
     def perform_create(self, serializer):
         follower = self.request.user
-        user_to_follow_id = self.request.data.get("user_id")
+        user_to_follow_id = self.request.data.get("user")
         user_to_follow = User.objects.get(id=user_to_follow_id)
-
-        serializer.save(follower=follower, user=user_to_follow, is_friend=True)
+        follower_instance = Follower.objects.create(name=user_to_follow.username)
+        serializer.save(follower=follower_instance, user=user_to_follow, is_friend=True)
